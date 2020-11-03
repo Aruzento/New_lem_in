@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 03:53:42 by erandal           #+#    #+#             */
-/*   Updated: 2020/10/27 22:50:10 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 14:15:49 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ void	get_result(t_lemon *root)
 	f = 1;
 	i = 1;
 	ft_putstr("\n");
+	if (root->num_best == 0)
+	{
+		write(1, "No any way from START to END\n", 30);
+		return ;
+	}
 	get_some_best(root, 1);
 	if (root->num_best == 0)
 		root->num_best = 1;

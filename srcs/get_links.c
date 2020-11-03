@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 14:03:34 by erandal           #+#    #+#             */
-/*   Updated: 2020/10/27 22:50:52 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 14:17:16 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,13 @@ int		parse_links(t_lemon *root)
 	pos = 0;
 	tmp = get_next_link(root->line, &pos);
 	id[0] = generate_key(tmp);
+	if (!root->linkd[id[0]])
+		err_exit(root, "\033[31;1mError: Room_Id error!\033[0m");
 	room[0] = get_id_name(root, tmp, id[0]);
 	tmp = get_next_link(root->line, &pos);
 	id[1] = generate_key(tmp);
+	if (!root->linkd[id[1]])
+		err_exit(root, "\033[31;1mError: Room_Id error!\033[0m");
 	room[1] = get_id_name(root, tmp, id[1]);
 	room[0]->link[room[0]->link_num] = room[1];
 	room[1]->link[room[1]->link_num] = room[0];
