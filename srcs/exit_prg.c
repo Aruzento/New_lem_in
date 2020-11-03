@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:51:18 by erandal           #+#    #+#             */
-/*   Updated: 2020/10/27 22:46:20 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 13:30:09 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ void	full_free(t_lemon *root)
 
 void	err_exit(t_lemon *root, char *error_msg)
 {
+	char	*tmp;
+
 	if (!errno)
 	{
 		ft_putstr_fd("\033[31;1m/ln:\033[0m", 2);
-		ft_putstr_fd(ft_itoa(root->line_num), 2);
+		tmp = ft_itoa(root->line_num);
+		ft_putstr_fd(tmp, 2);
+		ft_strdel(&tmp);
 		ft_putstr_fd("\033[31;1m: \033[0m", 2);
 	}
 	full_free(root);

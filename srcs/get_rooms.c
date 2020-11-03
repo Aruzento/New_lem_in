@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 23:46:37 by erandal           #+#    #+#             */
-/*   Updated: 2020/10/27 22:52:23 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 13:24:51 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,16 @@ int		parse_rooms(t_lemon *root)
 	room = room_create();
 	pos = 0;
 	if (!(room->name = get_next_word(root->line, &pos)))
-		return (-1);
+		return (err_room(room, room->name));
+	name_valid(root, room);
 	room->id = generate_key(room->name);
 	tmp = get_next_word(root->line, &pos);
 	if (li_atoi(tmp, &room->x_coord))
-		return (-1);
+		return (err_room(room, tmp));
 	ft_strdel(&tmp);
 	tmp = get_next_word(root->line, &pos);
 	if (li_atoi(tmp, &room->y_coord))
-		return (-1);
+		return (err_room(room, tmp));
 	ft_strdel(&tmp);
 	root->max_x = (root->max_x < room->x_coord) ? room->x_coord : root->max_x;
 	root->max_y = (root->max_y < room->y_coord) ? room->y_coord : root->max_y;
@@ -76,7 +77,7 @@ int		parse_rooms(t_lemon *root)
 	room->id_ln_i = root->room_num - 1;
 	create_link(root, room);
 	if (root->line[pos - 1])
-		return (-1);
+		return (err_room(room, room->name));
 	return (0);
 }
 
@@ -113,7 +114,7 @@ void	get_rooms(t_lemon *root)
 			get_links(root);
 			return ;
 		}
-		else if (parse_rooms(root) == -1)
+		else if (root->line[0] == 'L' || parse_rooms(root) == -1)
 			err_exit(root, "\033[31;1mError: Room line error!\033[0m");
 		ft_strdel(&root->line);
 		root->line_num++;
