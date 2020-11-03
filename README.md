@@ -16,3 +16,14 @@
 
 		- Added check the same links;
 		
+ v: 0.4.2 - added:
+		
+		- "No rooms" - error;
+
+		- All files Normed;
+
+		- (+mod) at parse_rooms - added one more func for getting coords;
+
+		  - deleted:
+		
+		- "-s" - flag from Makefile;

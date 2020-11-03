@@ -6,13 +6,13 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 13:55:09 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 13:26:59 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 15:08:47 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int 	err_room(t_rooms *room, char *tmp)
+int		err_room(t_rooms *room, char *tmp)
 {
 	if (tmp != NULL)
 		ft_strdel(&tmp);

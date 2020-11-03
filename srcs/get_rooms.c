@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 23:46:37 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 13:24:51 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 15:24:55 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	create_link(t_lemon *root, t_rooms *room)
 int		parse_rooms(t_lemon *root)
 {
 	int		pos;
-	char	*tmp;
 	t_rooms	*room;
 
 	room = room_create();
@@ -63,14 +62,10 @@ int		parse_rooms(t_lemon *root)
 		return (err_room(room, room->name));
 	name_valid(root, room);
 	room->id = generate_key(room->name);
-	tmp = get_next_word(root->line, &pos);
-	if (li_atoi(tmp, &room->x_coord))
-		return (err_room(room, tmp));
-	ft_strdel(&tmp);
-	tmp = get_next_word(root->line, &pos);
-	if (li_atoi(tmp, &room->y_coord))
-		return (err_room(room, tmp));
-	ft_strdel(&tmp);
+	if (take_coord(root, &pos, room, &room->x_coord))
+		return (-1);
+	if (take_coord(root, &pos, room, &room->y_coord))
+		return (-1);
 	root->max_x = (root->max_x < room->x_coord) ? room->x_coord : root->max_x;
 	root->max_y = (root->max_y < room->y_coord) ? room->y_coord : root->max_y;
 	root->id_links[root->room_num++] = room;
@@ -119,5 +114,7 @@ void	get_rooms(t_lemon *root)
 		ft_strdel(&root->line);
 		root->line_num++;
 	}
+	if (root->room_num == 0)
+		err_exit(root, "\033[31;1mError: No rooms!\033[0m");
 	err_exit(root, "\033[31;1mError: No links!\033[0m");
 }

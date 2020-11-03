@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 13:25:02 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 15:26:05 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void				get_result(t_lemon *root);
 char				*get_next_word(char *tmp, int *pos);
 t_ways				*non_zero_way(t_lemon *root, t_ways *w, int i);
 t_ways				*zero_way(t_lemon *root, t_ways *w, int i);
+int					take_coord(t_lemon *root,
+	int *pos, t_rooms *room, int *coord);
 void				name_valid(t_lemon *root, t_rooms *room);
-int 				err_room(t_rooms *room, char *tmp);
+int					err_room(t_rooms *room, char *tmp);
 #endif

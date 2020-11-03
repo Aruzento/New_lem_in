@@ -6,7 +6,7 @@
 #    By: erandal <erandal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 22:25:06 by erandal           #+#    #+#              #
-#    Updated: 2020/10/27 21:36:14 by erandal          ###   ########.fr        #
+#    Updated: 2020/11/03 15:00:49 by erandal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(LIBFT):
 
 $(NAME): $(LIBFT)
 	@gcc $(FLAGS) $(SRCS) $(INC) -g
-	@gcc -o $(NAME) $(OBJS) -L libft/ -lft $(INC) -g -s
+	@gcc -o $(NAME) $(OBJS) -L libft/ -lft $(INC) -g
 
 pack:
 	@mkdir objs >> tmp.log

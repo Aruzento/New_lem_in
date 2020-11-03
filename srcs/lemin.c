@@ -6,11 +6,22 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:48:29 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 14:35:35 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 15:25:07 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+int		take_coord(t_lemon *root, int *pos, t_rooms *room, int *coord)
+{
+	char *tmp;
+
+	tmp = get_next_word(root->line, pos);
+	if (li_atoi(tmp, coord))
+		return (err_room(room, tmp));
+	ft_strdel(&tmp);
+	return (0);
+}
 
 void	initial_root(t_lemon *root)
 {
