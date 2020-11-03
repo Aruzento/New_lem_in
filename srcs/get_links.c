@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 14:03:34 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 14:17:16 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 14:28:21 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@ t_rooms	*get_id_name(t_lemon *root, char *tmp, int id)
 	return (root->linkd[id]);
 }
 
+void	check_same(t_lemon *root, t_rooms *room, t_rooms *link)
+{
+	int i;
+
+	i = -1;
+	while (++i < room->link_num)
+		if (room->link[i] == link)
+			if (!ft_strcmp(room->link[i]->name, link->name))
+				err_exit(root, "\033[31;1mError: Double link!\033[0m");
+}
+
 int		parse_links(t_lemon *root)
 {
 	int		pos;
@@ -60,6 +71,8 @@ int		parse_links(t_lemon *root)
 	if (!root->linkd[id[1]])
 		err_exit(root, "\033[31;1mError: Room_Id error!\033[0m");
 	room[1] = get_id_name(root, tmp, id[1]);
+	check_same(root, room[0], room[1]);
+	check_same(root, room[1], room[0]);
 	room[0]->link[room[0]->link_num] = room[1];
 	room[1]->link[room[1]->link_num] = room[0];
 	room[0]->link_num++;

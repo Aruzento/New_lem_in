@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:48:29 by erandal           #+#    #+#             */
-/*   Updated: 2020/10/27 22:46:45 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/03 14:35:35 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	initial_root(t_lemon *root)
 	root->max_x = -1111;
 	root->max_y = -1111;
 	root->line_num = 0;
+	root->u_id = NULL;
+	root->best_ways = NULL;
+	root->mtrx = NULL;
+	root->all_ways = NULL;
 }
 
 int		main(int av, char **ac)

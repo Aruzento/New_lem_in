@@ -9,4 +9,10 @@
         - The best free at err_exit;
         
         - Check foreign room at link parse;
-        
+
+ v: 0.4 - added:
+		
+		- Nullified all pointers at ini();
+
+		- Added check the same links;
+		
