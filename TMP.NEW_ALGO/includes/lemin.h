@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 16:30:15 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/05 15:39:25 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ typedef struct		s_lemon
 	int				ways_num;
 	int				*best_ways;
 	int				num_best;
-	int				*u_id;
-	int				u_id_n;
+	int				*sum_way;
+	int 			*num;
+	char			**mtr;
 }					t_lemon;
 
+void				sort_b(t_lemon *root);
 int					bfs(t_lemon *root);
 int					get_ants(t_lemon *root);
 int					li_atoi(char *line, int *ants);

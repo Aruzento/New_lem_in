@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 03:53:42 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/04 18:57:07 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/05 14:00:02 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,6 @@ void	ln_print(int tp, int ant, char *name)
 		ft_putstr("->");
 		ft_putstr(name);
 		ft_putchar(' ');
-	}
-}
-
-void	get_some_best(t_lemon *root, int f)
-{
-	int		j;
-	int		i;
-	t_ways	*w;
-
-	while (f)
-	{
-		j = -1;
-		i = 0;
-		f = 0;
-		while (++j < root->num_best)
-		{
-			w = root->all_ways[root->best_ways[j]]->first;
-			i += w->way_l;
-		}
-		j = -1;
-		while (++j < root->num_best)
-		{
-			w = root->all_ways[root->best_ways[j]]->first;
-			if (((root->ants / root->num_best)
-				+ ((i / root->num_best) - 2)) < w->way_l)
-				f++;
-		}
-		root->num_best -= f;
 	}
 }
 

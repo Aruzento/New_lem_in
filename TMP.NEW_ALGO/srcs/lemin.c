@@ -6,11 +6,31 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:48:29 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/04 18:44:45 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/05 15:52:45 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+void	sort_b(t_lemon *root)
+{
+	int i;
+	int j;
+	t_ways *c;
+
+	i = -1;
+	while (++i < root->ways_num)
+	{
+		j = i;
+		while (++j < root->ways_num)
+			if (root->all_ways[i]->way_l > root->all_ways[j]->way_l)
+			{
+				c = root->all_ways[i];
+				root->all_ways[i] = root->all_ways[j];
+				root->all_ways[j] = c;
+			}
+	}
+}
 
 int		take_coord(t_lemon *root, int *pos, t_rooms *room, int *coord)
 {
@@ -43,9 +63,11 @@ void	initial_root(t_lemon *root)
 	root->max_x = -1111;
 	root->max_y = -1111;
 	root->line_num = 0;
-	root->u_id = NULL;
+	root->sum_way = NULL;
+	root->num = NULL;
 	root->best_ways = NULL;
 	root->mtrx = NULL;
+	root->mtr = NULL;
 	root->all_ways = NULL;
 }
 

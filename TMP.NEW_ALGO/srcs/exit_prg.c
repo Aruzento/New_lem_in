@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:51:18 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 14:36:52 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/05 13:43:00 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ void	full_free(t_lemon *root)
 		ft_memdel((void **)(&root->mtrx));
 	}
 	i = -1;
+	while (++i < root->ways_num)
+		ft_strdel(&(root->mtr[i]));
+	ft_strdel(root->mtr);
+	i = -1;
 	while (++i < root->room_num)
 	{
 		ft_memdel((void **)(&root->id_links[i]->name));
 		ft_memdel((void **)(&root->id_links[i]));
 	}
-	ft_memdel((void **)(&root->u_id));
+	ft_memdel((void **)(&root->sum_way));
 	ft_memdel((void **)(&root->best_ways));
 	ft_strdel(&root->line);
 	ft_memdel((void **)(&root));

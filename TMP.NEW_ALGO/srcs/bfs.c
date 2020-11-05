@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 14:33:39 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/04 17:39:00 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/05 15:35:28 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int		bfs(t_lemon *root)
 		root->all_ways[root->ways_num++] = save_way(root);
 		clear_way(root);
 	}
+	sort_b(root);
 	return (1);
 }
