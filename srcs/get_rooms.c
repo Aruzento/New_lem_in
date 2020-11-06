@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 23:46:37 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 15:24:55 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 15:58:39 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int		parse_rooms(t_lemon *root)
 		return (-1);
 	root->max_x = (root->max_x < room->x_coord) ? room->x_coord : root->max_x;
 	root->max_y = (root->max_y < room->y_coord) ? room->y_coord : root->max_y;
+	root->min_x = (root->min_x > room->x_coord) ? room->x_coord : root->min_x;
+	root->min_y = (root->min_y > room->y_coord) ? room->y_coord : root->min_y;
 	root->id_links[root->room_num++] = room;
 	room->id_ln_i = root->room_num - 1;
 	create_link(root, room);
@@ -100,11 +102,11 @@ void	get_rooms(t_lemon *root)
 	root->line_num++;
 	while ((ret = get_next_line(0, &root->line)))
 	{
-		ft_putstr(root->line);
-		ft_putchar('\n');
+		//ft_putstr(root->line);
+		//ft_putchar('\n');
 		if (root->line[0] == '#')
 			parse_cmd(root);
-		else if (ft_strchr(root->line, '-'))
+		else if (ft_strchr(root->line, '-') && !(ft_strchr(root->line, ' ')))
 		{
 			get_links(root);
 			return ;

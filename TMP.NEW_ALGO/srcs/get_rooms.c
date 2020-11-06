@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 23:46:37 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/04 17:52:43 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 14:53:40 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	get_rooms(t_lemon *root)
 	root->line_num++;
 	while ((ret = get_next_line(0, &root->line)))
 	{
-		/*ft_putstr(root->line);
-		ft_putchar('\n');*/
+		//ft_putstr(root->line);
+		//ft_putchar('\n');
 		if (root->line[0] == '#')
 			parse_cmd(root);
 		else if (ft_strchr(root->line, '-'))

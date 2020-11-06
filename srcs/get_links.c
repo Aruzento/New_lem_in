@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 14:03:34 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 14:28:21 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 15:24:13 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	check_same(t_lemon *root, t_rooms *room, t_rooms *link)
 		if (room->link[i] == link)
 			if (!ft_strcmp(room->link[i]->name, link->name))
 				err_exit(root, "\033[31;1mError: Double link!\033[0m");
+	if (room == link)
+		err_exit(root, "\033[31;1mError: Wrong link!\033[0m");
 }
 
 int		parse_links(t_lemon *root)

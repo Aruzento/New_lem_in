@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:48:29 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 15:25:07 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 16:00:15 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	initial_root(t_lemon *root)
 	root->iter_num = 0;
 	root->max_x = -1111;
 	root->max_y = -1111;
+	root->max_y = 1111111;
+	root->max_y = 1111111;
 	root->line_num = 0;
 	root->u_id = NULL;
 	root->best_ways = NULL;
@@ -64,6 +66,6 @@ int		main(int av, char **ac)
 	bfs(root);
 	chose_ways(root);
 	get_result(root);
-	full_free(root);
+	//full_free(root);
 	return (0);
 }

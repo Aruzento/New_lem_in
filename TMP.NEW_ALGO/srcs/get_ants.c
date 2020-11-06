@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:58:25 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/04 17:52:57 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 13:42:25 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int		get_ants(t_lemon *root)
 	ft_putchar('\n');*/
 	if (li_atoi(root->line, &root->ants))
 		err_exit(root, "\033[31;1mError: Atoi is incorrect!\033[0m");
+	if (root->ants < 0)
+		err_exit(root, "\033[31;1mError: Ants can't be less then 0!\033[0m");
 	ft_strdel(&root->line);
 	return (0);
 }

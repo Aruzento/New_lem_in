@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 03:53:42 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 15:23:09 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 16:05:56 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ln_print(int tp, int ant, char *name)
 {
 	if (tp == 1)
 	{
-		ft_putstr("\033[34m|");
+		ft_putstr("|");
 		ft_putnbr(ant);
-		ft_putstr("|: \033[0m");
+		ft_putstr("|: ");
 	}
 	else
 	{
@@ -84,17 +84,18 @@ void	line_tap(t_lemon *root, int *f, int *i, int j)
 		w->ant = 0;
 }
 
-void	best_nun_check(t_lemon *root)
+int		best_nun_check(t_lemon *root)
 {
 	ft_putstr("\n");
 	if (root->num_best == 0)
 	{
 		write(1, "No any way from START to END\n", 30);
-		return ;
+		return (0);
 	}
 	get_some_best(root, 1);
 	if (root->num_best == 0)
 		root->num_best = 1;
+	return (1);
 }
 
 void	get_result(t_lemon *root)
@@ -105,7 +106,8 @@ void	get_result(t_lemon *root)
 
 	f = 1;
 	i = 1;
-	best_nun_check(root);
+	if (!best_nun_check(root))
+		return ;
 	while (i <= root->ants || f)
 	{
 		j = -1;

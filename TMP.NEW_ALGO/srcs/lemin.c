@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:48:29 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/05 15:52:45 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 15:15:31 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int		main(int av, char **ac)
 	read_map(root);
 	bfs(root);
 	printf("\n");
-	chose_ways(root);
-	get_result(root);
+	//chose_ways(root);
+	//get_result(root);
 	full_free(root);
 	return (0);
 }

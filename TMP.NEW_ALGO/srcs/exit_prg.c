@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:51:18 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/05 13:43:00 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 14:55:17 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	full_free(t_lemon *root)
 	int		i;
 
 	i = -1;
-	while (++i < root->num_list)
-		ft_memdel((void **)(&root->list_ways[i]));
+	//while (++i < root->num_list)
+	//	ft_memdel((void **)(&root->list_ways[i]));
 	ft_memdel((void **)(&root->all_ways));
 	if (root->mtrx)
 	{

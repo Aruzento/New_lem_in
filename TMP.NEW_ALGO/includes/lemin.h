@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/05 15:39:25 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 14:15:46 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct		s_lemon
 	t_rooms			*way[100000];
 	int				way_n;
 	t_ways			**all_ways;
-	t_ways			*list_ways[100000];
+	t_ways			*list_ways[10000000];
 	int				num_list;
 	int				ways_num;
 	int				*best_ways;

@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 14:33:39 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/05 15:35:28 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 14:59:53 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ t_ways	*save_way(t_lemon *root)
 	int		i;
 
 	w = NULL;
+	printf("a\n");
 	w = re_link(root, w);
+	printf("b\n");
 	w->first->last = w;
 	w->first->prev = w;
 	i = -1;
@@ -43,12 +45,7 @@ t_ways	*save_way(t_lemon *root)
 		w = w->next;
 	}
 	w = w->first;
-	i = -1;
-	while (++i < w->first->way_l)
-	{
-		w = w->next;
-	}
-	w = w->first;
+	printf("c\n");
 	return (w);
 }
 
@@ -57,6 +54,7 @@ void	clear_way(t_lemon *root)
 	int		i;
 	
 	i = -1;
+	
 	while (++i < root->room_num)
 		root->id_links[i]->way_num = 9999999;
 }
@@ -72,26 +70,25 @@ int		adventure(t_lemon *root, int i, int ed, int rt)
 	if (i == ed)
 	{
 		root->way[rt] = root->id_links[i];
-		if (check_way_i(root, rt) != 0)
-		{
-			root->id_links[i]->way_num = 9999999;
-			return (0);
-		}
 		root->way_n = rt;
-		return (1);
+		printf("%i\n", root->ways_num);
+		root->all_ways[root->ways_num++] = save_way(root);
+		printf("d\n");
+		root->id_links[i]->way_num = 9999999;
+		return (0);
 	}
 	else
 		while (++j < root->id_links[i]->link_num)
 		{
 			if (root->id_links[i]->link[j]
-				&& root->id_links[i]->link[j]->way_num >= rt)
+				&& root->id_links[i]->link[j]->way_num >= rt
+				&& rt + 1 < root->ants)
 			{
 				root->way[rt] = root->id_links[i];
-				if (adventure(root,
-					root->id_links[i]->link[j]->id_ln_i, ed, rt + 1))
-					return (1);
+				adventure(root,	root->id_links[i]->link[j]->id_ln_i, ed, rt + 1);
 			}
 		}
+	root->id_links[i]->way_num = 9999999;
 	return (0);
 }
 
@@ -108,17 +105,13 @@ int		bfs(t_lemon *root)
 		else if (root->id_links[i]->room_status == 2)
 			ed = i;
 	clear_way(root);
-	root->all_ways = (t_ways **)malloc(sizeof(t_ways *) * root->room_num);
+	root->all_ways = (t_ways **)malloc(sizeof(t_ways *) * (root->room_num * root->room_num));
 	if (root->all_ways == NULL)
 		err_exit(root, "\033[31;1mError: Way malloc error!\033[0m");
 	root->ways_num = 0;
-	while (1)
-	{
+	while (root->ways_num < root->room_num)
 		if (adventure(root, st, ed, 0) == 0)
 			break ;
-		root->all_ways[root->ways_num++] = save_way(root);
-		clear_way(root);
-	}
 	sort_b(root);
 	return (1);
 }
