@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 14:03:34 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/06 15:24:13 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 16:59:56 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	get_links(t_lemon *root)
 	root->line_num++;
 	while ((ret = get_next_line(0, &root->line)))
 	{
-		ft_putstr(root->line);
-		ft_putchar('\n');
+		//ft_putstr(root->line);
+		//ft_putchar('\n');
 		if (root->line[0] == '#')
 			parse_cmd(root);
 		else if (!ft_strchr(root->line, '-') || parse_links(root))

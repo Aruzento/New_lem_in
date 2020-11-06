@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 23:46:37 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/06 15:58:39 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 16:56:24 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,10 @@ int		parse_rooms(t_lemon *root)
 		return (-1);
 	if (take_coord(root, &pos, room, &room->y_coord))
 		return (-1);
-	root->max_x = (root->max_x < room->x_coord) ? room->x_coord : root->max_x;
-	root->max_y = (root->max_y < room->y_coord) ? room->y_coord : root->max_y;
-	root->min_x = (root->min_x > room->x_coord) ? room->x_coord : root->min_x;
-	root->min_y = (root->min_y > room->y_coord) ? room->y_coord : root->min_y;
 	root->id_links[root->room_num++] = room;
 	room->id_ln_i = root->room_num - 1;
 	create_link(root, room);
+	printf("name: %s | x: %i | y: %i\n", room->name, room->x_coord, room->y_coord);
 	if (root->line[pos - 1])
 		return (err_room(room, room->name));
 	return (0);
@@ -100,6 +97,7 @@ void	get_rooms(t_lemon *root)
 
 	ret = 0;
 	root->line_num++;
+	printf("Rooms:\n");
 	while ((ret = get_next_line(0, &root->line)))
 	{
 		//ft_putstr(root->line);

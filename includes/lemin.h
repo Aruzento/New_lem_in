@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/06 15:35:17 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/06 16:56:17 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,9 @@ typedef struct		s_lemon
 	int				cmd;
 	int				start;
 	int				end;
-	int				max_x;
-	int				max_y;
-	int				min_x;
-	int				min_y;
 	int				iter_num;
 	int				ants;
 	int				room_num;
-	char			**mtrx;
 	t_rooms			*id_links[100000];
 	t_rooms			*linkd[100000];
 	int				linkd_n[100000];
