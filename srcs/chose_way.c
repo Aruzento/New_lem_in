@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:08:56 by erandal           #+#    #+#             */
-/*   Updated: 2020/10/27 22:49:46 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 17:49:54 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,10 @@ void	chose_ways(t_lemon *root)
 	int i;
 
 	i = -1;
-	root->u_id_n = 0;
-	root->u_id = (int *)malloc(sizeof(int) * root->room_num);
-	root->best_ways = (int *)malloc(sizeof(int) * root->ways_num);
-	if (root->u_id == NULL || root->best_ways == NULL)
+	if (!(root->best_ways = (int *)malloc(sizeof(int) * root->ways_num)))
 		err_exit(root, "\033[31;1mError: Way malloc error!\033[0m");
 	root->num_best = 0;
+	root->u_id_n = 0;
 	while (++i < root->ways_num)
 		if (check_way(root, i))
 			root->best_ways[root->num_best++] = i;

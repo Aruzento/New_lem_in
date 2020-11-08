@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 13:55:09 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/03 15:08:47 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 17:54:02 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	name_valid(t_lemon *root, t_rooms *room)
 	int	i;
 
 	i = -1;
+	if (ft_strchr(room->name, '-'))
+	{
+		err_room(room, NULL);
+		err_exit(root, "\033[31;1mError: '-' char is forbidden!\033[0m");
+	}
 	while (room->name[++i])
 		if ((int)(room->name[i]) < 0)
 		{

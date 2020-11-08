@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:51:18 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/06 16:59:57 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 17:53:08 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	full_free(t_lemon *root)
 		ft_memdel((void **)(&root->id_links[i]->name));
 		ft_memdel((void **)(&root->id_links[i]));
 	}
-	ft_memdel((void **)(&root->u_id));
-	ft_memdel((void **)(&root->best_ways));
-	ft_strdel(&root->line);
+	i = -1;
+	while (++i < root->line_num)
+		ft_strdel(&(root->input_lines[i]));
+	ft_memdel((void **)&root->input_lines);
+	ft_memdel((void **)(&(root->best_ways)));
 	ft_memdel((void **)(&root));
 }
 
@@ -36,7 +38,7 @@ void	err_exit(t_lemon *root, char *error_msg)
 {
 	char	*tmp;
 
-	if (!errno)
+	if (!errno && root->err_f)
 	{
 		ft_putstr_fd("\033[31;1m/ln:\033[0m", 2);
 		tmp = ft_itoa(root->line_num);
@@ -44,10 +46,13 @@ void	err_exit(t_lemon *root, char *error_msg)
 		ft_strdel(&tmp);
 		ft_putstr_fd("\033[31;1m: \033[0m", 2);
 	}
-	//full_free(root);
+	full_free(root);
 	if (!errno)
 	{
-		ft_putendl_fd(error_msg, 2);
+		if (root->err_f)
+			ft_putendl_fd(error_msg, 2);
+		else
+			ft_putendl_fd("ERROR", 2);
 		exit(2);
 	}
 	else

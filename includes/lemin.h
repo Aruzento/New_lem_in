@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/06 16:56:17 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 17:50:51 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ typedef struct		s_lemon
 	int				start;
 	int				end;
 	int				iter_num;
+	int				err_f;
 	int				ants;
 	int				room_num;
+	char			**input_lines;
 	t_rooms			*id_links[100000];
 	t_rooms			*linkd[100000];
 	int				linkd_n[100000];
@@ -76,7 +78,7 @@ typedef struct		s_lemon
 	int				ways_num;
 	int				*best_ways;
 	int				num_best;
-	int				*u_id;
+	int				u_id[100000];
 	int				u_id_n;
 }					t_lemon;
 

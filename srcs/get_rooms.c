@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 23:46:37 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/06 16:56:24 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 17:54:33 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_rooms	*room_create(void)
 	room = (t_rooms *)malloc(sizeof(t_rooms));
 	room->link_num = 0;
 	room->room_status = 0;
+	room->marker = 0;
 	return (room);
 }
 
@@ -55,6 +56,7 @@ int		parse_rooms(t_lemon *root)
 {
 	int		pos;
 	t_rooms	*room;
+	int		i;
 
 	room = room_create();
 	pos = 0;
@@ -66,10 +68,13 @@ int		parse_rooms(t_lemon *root)
 		return (-1);
 	if (take_coord(root, &pos, room, &room->y_coord))
 		return (-1);
+	room->id_ln_i = root->room_num;
 	root->id_links[root->room_num++] = room;
-	room->id_ln_i = root->room_num - 1;
+	i = -1;
+	while (++i < root->room_num - 1)
+		if (!ft_strcmp(root->id_links[i]->name, room->name))
+			return (-1);
 	create_link(root, room);
-	printf("name: %s | x: %i | y: %i\n", room->name, room->x_coord, room->y_coord);
 	if (root->line[pos - 1])
 		return (err_room(room, room->name));
 	return (0);
@@ -96,12 +101,8 @@ void	get_rooms(t_lemon *root)
 	int ret;
 
 	ret = 0;
-	root->line_num++;
-	printf("Rooms:\n");
 	while ((ret = get_next_line(0, &root->line)))
 	{
-		//ft_putstr(root->line);
-		//ft_putchar('\n');
 		if (root->line[0] == '#')
 			parse_cmd(root);
 		else if (ft_strchr(root->line, '-') && !(ft_strchr(root->line, ' ')))
@@ -111,7 +112,7 @@ void	get_rooms(t_lemon *root)
 		}
 		else if (root->line[0] == 'L' || parse_rooms(root) == -1)
 			err_exit(root, "\033[31;1mError: Room line error!\033[0m");
-		ft_strdel(&root->line);
+		root->input_lines[root->line_num] = root->line;
 		root->line_num++;
 	}
 	if (root->room_num == 0)

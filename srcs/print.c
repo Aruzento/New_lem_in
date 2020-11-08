@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 03:53:42 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/06 16:05:56 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 17:11:12 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,13 @@ void	get_result(t_lemon *root)
 	int		i;
 	int		j;
 
-	f = 1;
-	i = 1;
 	if (!best_nun_check(root))
 		return ;
+	i = -1;
+	while (++i < root->line_num)
+		ft_putendl(root->input_lines[i]);
+	f = 1;
+	i = 1;
 	while (i <= root->ants || f)
 	{
 		j = -1;
