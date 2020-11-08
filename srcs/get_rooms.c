@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 23:46:37 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/08 17:54:33 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 18:39:10 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ void	get_rooms(t_lemon *root)
 			get_links(root);
 			return ;
 		}
-		else if (root->line[0] == 'L' || parse_rooms(root) == -1)
+		else if ((root->room_num == 99999) || root->line[0] == 'L'
+			|| parse_rooms(root) == -1)
 			err_exit(root, "\033[31;1mError: Room line error!\033[0m");
 		root->input_lines[root->line_num] = root->line;
 		root->line_num++;

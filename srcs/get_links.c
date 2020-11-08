@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 14:03:34 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/08 17:36:25 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/08 18:18:20 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int		parse_links(t_lemon *root)
 	check_same(root, room[1], room[0]);
 	room[0]->link[room[0]->link_num] = room[1];
 	room[1]->link[room[1]->link_num] = room[0];
-	room[0]->link_num++;
-	room[1]->link_num++;
+	if ((room[0]->link_num++ == 999999) || (room[1]->link_num++ == 999999))
+		err_exit(root, "\033[31;1mError: Too much links!\033[0m");
 	root->linkd[id[1]] = root->linkd[id[1]]->first;
 	root->linkd[id[0]] = root->linkd[id[0]]->first;
 	return (0);
