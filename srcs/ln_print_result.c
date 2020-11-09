@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:09:36 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 20:13:25 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 20:26:20 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int		best_nun_check(t_lemon *root)
 {
 	if (root->num_best == 0)
 		err_exit(root, "\033[31;1mError: None possible solution!\033[0m");
-	ft_putstr("\n");
 	get_some_best(root, 1);
 	if (root->num_best == 0)
 		root->num_best = 1;
