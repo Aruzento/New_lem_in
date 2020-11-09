@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 03:53:42 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/08 17:11:12 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 13:53:08 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	get_result(t_lemon *root)
 	i = -1;
 	while (++i < root->line_num)
 		ft_putendl(root->input_lines[i]);
+	ft_putchar('\n');
 	f = 1;
 	i = 1;
 	while (i <= root->ants || f)
