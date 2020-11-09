@@ -6,10 +6,9 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:01:40 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 15:06:51 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 15:27:18 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "lemin.h"
 
@@ -103,7 +102,8 @@ int		bfs(t_lemon *root)
 	int ed;
 
 	i = -1;
-	if (!(root->all_ways = (t_ways **)malloc(sizeof(t_ways *) * root->room_num)))
+	if (!(root->all_ways =
+		(t_ways **)malloc(sizeof(t_ways *) * root->room_num)))
 		err_exit(root, "\033[31;1mError: Way malloc error!\033[0m");
 	while (++i < root->room_num)
 	{
