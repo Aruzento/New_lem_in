@@ -6,7 +6,7 @@
 #    By: erandal <erandal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 22:25:06 by erandal           #+#    #+#              #
-#    Updated: 2020/11/03 15:00:49 by erandal          ###   ########.fr        #
+#    Updated: 2020/11/09 15:23:26 by erandal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,16 +18,18 @@ INCDIR = includes			#			просто для красоты				#
 GNLDIR = gnl				#			  и все, серьезно				#
 ODIR = objs					#											#
 
-SRC = 	lemin.c			\
-		exit_prg.c			\
-		get_ants.c			\
-		get_rooms.c			\
-		get_links.c			\
-		bfs.c 				\
-		key_create.c		\
-		read_root.c 		\
-		chose_way.c 		\
-		print.c
+SRC = 	ln_lemin.c			\
+		ln_initialization.c	\
+		ln_utils.c			\
+		ln_rooms_utils.c	\
+		ln_get_ants.c		\
+		ln_get_rooms.c		\
+		ln_get_links.c		\
+		ln_bfs.c 			\
+		ln_choosing_path.c	\
+		ln_print_result.c	\
+		ln_print_alt.c		\
+		ln_exit_prg.c
 
 GNL = get_next_line.c
 

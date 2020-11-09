@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/08 17:50:51 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 15:22:23 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,14 @@ typedef struct		s_ways
 
 typedef struct		s_lemon
 {
+	int				print_res;
+	int				iter_num;
+	int				err_f;
 	char			*line;
 	int				line_num;
 	int				cmd;
 	int				start;
 	int				end;
-	int				iter_num;
-	int				err_f;
 	int				ants;
 	int				room_num;
 	char			**input_lines;
@@ -82,24 +83,29 @@ typedef struct		s_lemon
 	int				u_id_n;
 }					t_lemon;
 
-int					bfs(t_lemon *root);
+void				initial_root(t_lemon *root);
+void				check_flags(t_lemon *root, int av, char **ac);
+void				read_map(t_lemon *root);
 int					get_ants(t_lemon *root);
 int					li_atoi(char *line, int *ants);
-int					generate_key(char *name);
-void				get_rooms(t_lemon *root);
-void				get_links(t_lemon *root);
-void				err_exit(t_lemon *gr, char *error_msg);
-void				full_free(t_lemon *root);
-void				read_map(t_lemon *root);
-void				parse_cmd(t_lemon *root);
-void				show_status_t_lemon(t_lemon *root);
-void				chose_ways(t_lemon *root);
-void				get_result(t_lemon *root);
 char				*get_next_word(char *tmp, int *pos);
-t_ways				*non_zero_way(t_lemon *root, t_ways *w, int i);
-t_ways				*zero_way(t_lemon *root, t_ways *w, int i);
+void				get_rooms(t_lemon *root);
+void				name_valid(t_lemon *root, t_rooms *room);
+int					generate_key(char *name);
+void				create_link(t_lemon *root, t_rooms *room);
 int					take_coord(t_lemon *root,
 	int *pos, t_rooms *room, int *coord);
-void				name_valid(t_lemon *root, t_rooms *room);
 int					err_room(t_rooms *room, char *tmp);
+void				get_links(t_lemon *root);
+void				parse_cmd(t_lemon *root);
+char				*get_next_link(char *tmp, int *pos);
+int					bfs(t_lemon *root);
+t_ways				*non_zero_way(t_lemon *root, t_ways *w, int i);
+t_ways				*zero_way(t_lemon *root, t_ways *w, int i);
+void				chose_ways(t_lemon *root);
+void				get_result(t_lemon *root);
+void				alt_print(t_lemon *root);
+void				err_exit(t_lemon *gr, char *error_msg);
+void				full_free(t_lemon *root);
+void				show_status_t_lemon(t_lemon *root);
 #endif
