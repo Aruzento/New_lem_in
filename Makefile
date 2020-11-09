@@ -6,7 +6,7 @@
 #    By: erandal <erandal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 22:25:06 by erandal           #+#    #+#              #
-#    Updated: 2020/11/09 18:43:03 by erandal          ###   ########.fr        #
+#    Updated: 2020/11/09 20:17:20 by erandal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,7 @@ clean:
 	@echo "\n\tЧистим *.o..."
 	@$(MAKE) -sC $(LDIR) clean
 	@rm -rf $(ODIR)
+	@rm -rf *.dSYM
 	@clear
 	@echo "\n\t$(GREEN)Все чисто!$(RESET)"
 

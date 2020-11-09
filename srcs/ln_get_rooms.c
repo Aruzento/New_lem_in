@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:51:03 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 18:41:34 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 19:58:34 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		parse_rooms(t_lemon *root)
 	room = room_create();
 	pos = 0;
 	if (!(room->name = get_next_word(root->line, &pos)))
-		return (err_room(room, room->name));
+		return (err_room(root, room, room->name));
 	name_valid(root, room);
 	room->id = generate_key(room->name);
 	if (take_coord(root, &pos, room, &room->x_coord))
@@ -47,7 +47,7 @@ int		parse_rooms(t_lemon *root)
 			return (-1);
 	create_link(root, room);
 	if (root->line[pos - 1])
-		return (err_room(room, room->name));
+		return (err_room(root, room, room->name));
 	return (0);
 }
 

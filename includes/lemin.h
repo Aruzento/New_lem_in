@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 16:44:44 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 19:59:35 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int					generate_key(char *name);
 void				create_link(t_lemon *root, t_rooms *room);
 int					take_coord(t_lemon *root,
 	int *pos, t_rooms *room, int *coord);
-int					err_room(t_rooms *room, char *tmp);
+int					err_room(t_lemon *root, t_rooms *room, char *tmp);
 void				get_links(t_lemon *root);
 void				parse_cmd(t_lemon *root);
 char				*get_next_link(char *tmp, int *pos);

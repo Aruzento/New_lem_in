@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:09:36 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 18:48:26 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 20:13:25 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,9 @@ void	line_tap(t_lemon *root, int *f, int *i, int j)
 
 int		best_nun_check(t_lemon *root)
 {
-	ft_putstr("\n");
 	if (root->num_best == 0)
-	{
-		write(1, "No any way from START to END\n", 30);
-		return (0);
-	}
+		err_exit(root, "\033[31;1mError: None possible solution!\033[0m");
+	ft_putstr("\n");
 	get_some_best(root, 1);
 	if (root->num_best == 0)
 		root->num_best = 1;

@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:46:12 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 15:28:03 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 19:59:20 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	name_valid(t_lemon *root, t_rooms *room)
 	i = -1;
 	if (ft_strchr(room->name, '-'))
 	{
-		err_room(room, NULL);
+		err_room(root, room, NULL);
 		err_exit(root, "\033[31;1mError: '-' char is forbidden!\033[0m");
 	}
 	while (room->name[++i])
 		if ((int)(room->name[i]) < 0)
 		{
-			err_room(room, NULL);
+			err_room(root, room, NULL);
 			err_exit(root, "\033[31;1mError: RU char is forbidden!\033[0m");
 		}
 }
@@ -48,19 +48,18 @@ int		take_coord(t_lemon *root, int *pos, t_rooms *room, int *coord)
 
 	tmp = get_next_word(root->line, pos);
 	if (li_atoi(tmp, coord))
-		return (err_room(room, tmp));
+		return (err_room(root, room, tmp));
 	ft_strdel(&tmp);
 	return (0);
 }
 
-int		err_room(t_rooms *room, char *tmp)
+int		err_room(t_lemon *root, t_rooms *room, char *tmp)
 {
-	if (tmp != NULL)
+	if (tmp != room->name)
 		ft_strdel(&tmp);
-	if (room->name != NULL)
-		ft_strdel(&room->name);
-	if (room)
-		free(room);
+	ft_strdel(&room->name);
+	ft_memdel((void **)&room);
+	root->room_num--;
 	return (-1);
 }
 

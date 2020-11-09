@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:19:21 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 17:17:29 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 20:00:57 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	initial_root(t_lemon *root)
 
 	i = 0;
 	root->ways_num = 0;
+	root->line = NULL;
 	root->start = 0;
 	root->end = 0;
 	root->ants = 0;
