@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:09:36 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 15:15:47 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 18:48:26 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	get_result(t_lemon *root)
 			ln_print(1, root->iter_num++, "iter");
 		while (++j < root->num_best)
 			line_tap(root, &f, &i, j);
+		if (i > root->ants && !f && (root->iter_num))
+			ft_putendl("END");
 		if (i <= root->ants || f)
 			ft_putstr("\n");
 	}

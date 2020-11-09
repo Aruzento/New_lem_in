@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:51:03 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 17:43:24 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/09 18:41:34 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	get_rooms(t_lemon *root)
 	ret = 0;
 	while ((ret = get_next_line(0, &root->line)))
 	{
+		root->input_lines[root->line_num] = ft_strdup(root->line);
+		root->line_num++;
 		if (root->line[0] == '#')
 			parse_cmd(root);
 		else if (ft_strchr(root->line, '-') && !(ft_strchr(root->line, ' ')))
@@ -84,8 +86,7 @@ void	get_rooms(t_lemon *root)
 		else if ((root->room_num == 99999) || root->line[0] == 'L'
 			|| parse_rooms(root) == -1)
 			err_exit(root, "\033[31;1mError: Room line error!\033[0m");
-		root->input_lines[root->line_num] = root->line;
-		root->line_num++;
+		ft_strdel(&(root->line));
 	}
 	if (root->room_num == 0)
 		err_exit(root, "\033[31;1mError: No rooms!\033[0m");

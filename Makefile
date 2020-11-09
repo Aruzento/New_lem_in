@@ -6,13 +6,13 @@
 #    By: erandal <erandal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 22:25:06 by erandal           #+#    #+#              #
-#    Updated: 2020/11/09 17:46:37 by erandal          ###   ########.fr        #
+#    Updated: 2020/11/09 18:43:03 by erandal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 LIBRS = -lft -L $(LDIR)
 INCS = -I $(IDIR) -I $(LHEAD)
 
