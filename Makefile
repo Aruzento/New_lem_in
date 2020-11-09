@@ -6,19 +6,28 @@
 #    By: erandal <erandal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 22:25:06 by erandal           #+#    #+#              #
-#    Updated: 2020/11/09 15:23:26 by erandal          ###   ########.fr        #
+#    Updated: 2020/11/09 17:46:37 by erandal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
-SRCDIR = srcs				#											#
-LDIR = libft				#		Различные директории, сделал		#
-INCDIR = includes			#			просто для красоты				#
-GNLDIR = gnl				#			  и все, серьезно				#
-ODIR = objs					#											#
+FLAGS = -Wall -Werror -Wextra
+LIBRS = -lft -L $(LDIR)
+INCS = -I $(IDIR) -I $(LHEAD)
 
-SRC = 	ln_lemin.c			\
+LDIR = ./libft/
+LHEAD = $(LDIR)includes/
+LIBFT = $(LDIR)libft.a
+
+ILIST = lemin.h\
+	get_next_line.h
+IDIR = ./includes/
+IHEAD = $(addprefix $(IDIR), $(ILIST))
+
+SDIR = ./srcs/
+SLIST = ln_lemin.c			\
+		get_next_line.c		\
 		ln_initialization.c	\
 		ln_utils.c			\
 		ln_rooms_utils.c	\
@@ -30,47 +39,86 @@ SRC = 	ln_lemin.c			\
 		ln_print_result.c	\
 		ln_print_alt.c		\
 		ln_exit_prg.c
+SSRC = $(addprefix $(SDIR), $(SLIST))
+SRCS = $(GSRC) $(SSRC)
 
-GNL = get_next_line.c
+ODIR = objs/
+OSLST = $(patsubst %.c, %.o, $(SLIST))
+OBJS = $(addprefix $(ODIR), $(OSLST))
 
-INC =	-I ./includes/			\
-		-I ./gnl/				\
-		-I ./libft/includes/	\
+# COLORS
 
-FLAGS = -c -Wall -Wextra -Werror
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+RED = \033[0;31m
+RESET = \033[0m
 
-SRCS =	$(addprefix ./srcs/, $(SRC))	\
-		$(addprefix ./gnl/, $(GNL))			
+.PHONY: all clean fclean re
 
-OBJS =	$(SRC:.c=.o)	\
-		$(GNL:.c=.o)
+all: print $(NAME)
+	@echo "\n$(GREEN)Завершено успешно!$(RESET)"
+	@echo "\nПроверить норму: make $(YELLOW)norme$(RESET)"
+	@echo "\nТы так же можешь скачать карты и генератор!\n\tПросто напиши: make $(YELLOW)erandal$(RESET)"
 
-LIBFT = $(addprefix ./libft/, libft.a)
+print:
+	@clear
+	@echo "\n\tПодготовка к $(YELLOW)all$(RESET)"
 
-.PHONY: clean fclean all re
+dot:
+	@echo "$(GREEN).$(RESET)\c"
 
-all: $(NAME)
+$(NAME): $(LIBFT) $(ODIR) $(OBJS)
+	@gcc $(FLAGS) $(LIBRS) $(INCS) $(OBJS) -o $(NAME)
+	@echo "]\n-Создание $(GREEN)./$(NAME)$(RESET)"
 
 $(LIBFT):
-	@make -C libft > tmp.log
+	@echo "-Создание $(GREEN)$(LIBFT)$(RESET)"
+	@$(MAKE) -sC $(LDIR)
 
-$(NAME): $(LIBFT)
-	@gcc $(FLAGS) $(SRCS) $(INC) -g
-	@gcc -o $(NAME) $(OBJS) -L libft/ -lft $(INC) -g
+$(ODIR): 
+	@mkdir -p $(ODIR)
+	@echo "-Создание $(GREEN)object directory$(RESET)"
+	@echo "-Создание $(GREEN)object files:$(RESET)"
+	@echo "-Ожидайте [\c"
 
-pack:
-	@mkdir objs >> tmp.log
-	@mv *.o objs >> tmp.log
+$(ODIR)%.o : $(SDIR)%.c $(IHEAD)
+	@gcc $(FLAGS) -c $(INCS) $< -o $@ 
+	@echo "$(GREEN)✓$(RESET)\c"
+
+erandal:
+	@rm -rf maps
+	@git clone https://github.com/Aruzento/Maps.git maps
+	@chmod 777 maps/generator
+	@clear
+	@echo "\n\t$(GREEN)Карты и генератор скачаны!$(RESET)"
+	@echo "\nПапки: $(YELLOW)./non_valid$(RESET) и $(YELLOW)./valid$(RESET)\n\nЕсть стандартный генератор:"
+	@echo " - '$(GREEN)--flow-one$(RESET)' - создает муравейник с уникальной тропой и $(YELLOW)1$(RESET) муравьем;"
+	@echo " - '$(GREEN)--flow-ten$(RESET)' - создает муравейник с уникальной тропой и $(YELLOW)10$(RESET) муравьями;"
+	@echo " - '$(GREEN)--flow-thousand$(RESET)' - создает муравейник с уникальной тропой и $(YELLOW)100$(RESET) муравьями;"
+	@echo " - '$(GREEN)--big$(RESET)' - создает большую карту (примерно $(YELLOW)1000$(RESET) комнат) для проверки временной сложности;"
+	@echo " - '$(GREEN)--big-superposition$(RESET)' - генерирует большую карту с пересекающимися путями;"
+	@echo "\nПиши: './maps/generator $(GREEN)--Что-то$(RESET)'"
 
 clean:
 	@clear
-	@rm -rf $(ODIR) >> tmp.log
-	@rm -rf $(OBJS) >> tmp.log
-	@#make -C libft/ clean >> tmp.log
+	@echo "\n\tЧистим *.o..."
+	@$(MAKE) -sC $(LDIR) clean
+	@rm -rf $(ODIR)
+	@clear
+	@echo "\n\t$(GREEN)Все чисто!$(RESET)"
 
 fclean: clean
-	@rm -rf $(NAME) >> tmp.log
-	@make -C libft/ fclean >> tmp.log
-	@rm -rf tmp.log
+	@echo "\n\tЧистим исполняющие файлы..."
+	@rm -f $(LIBFT)
+	@rm -rf maps
+	@rm -f $(NAME)
+	@clear
+	@echo "\n\t$(GREEN)Все чисто!$(RESET)"
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
+
+norme :
+	@norminette `find . -type f \( -name *.c -o -name *.h \)` \
+	| if ! grep Error -B 1 --color; then echo "\tВсе файлы $(GREEN)по норме$(RESET)!"; fi
