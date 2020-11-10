@@ -6,7 +6,7 @@
 #    By: erandal <erandal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 22:25:06 by erandal           #+#    #+#              #
-#    Updated: 2020/11/09 20:17:20 by erandal          ###   ########.fr        #
+#    Updated: 2020/11/09 20:38:54 by erandal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ all: print $(NAME)
 
 print:
 	@clear
-	@echo "\n\tПодготовка к $(YELLOW)all$(RESET)"
+	@echo "\n\tПодготовка к $(YELLOW)all$(RESET)..\n"
 
 dot:
 	@echo "$(GREEN).$(RESET)\c"
