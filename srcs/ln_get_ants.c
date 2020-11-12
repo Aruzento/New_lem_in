@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:41:52 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/10 14:49:29 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/12 14:53:39 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@ void	err_get_map(t_lemon *root)
 		ft_putendl_fd("ERROR", 2);
 	full_free(root);
 	exit(2);
+}
+
+int		check_int(int a, char c, int n)
+{
+	long long	ch;
+
+	ch = a;
+	ch = ch * 10 + (c - '0');
+	if ((!n && ch > 2147483647) || (n && ch > 2147483648))
+		return (-1);
+	return (0);
 }
 
 int		get_ants(t_lemon *root)
@@ -41,8 +52,8 @@ int		get_ants(t_lemon *root)
 	}
 	if (li_atoi(root->line, &root->ants))
 		err_exit(root, "\033[31;1mError: Atoi is incorrect!\033[0m");
-	if (root->ants < 0)
-		err_exit(root, "\033[31;1mError: Ants can't be less then 0!\033[0m");
+	if (root->ants <= 0)
+		err_exit(root, "\033[31;1mError: Ants can't be less then 1!\033[0m");
 	root->input_lines[root->line_num++] = ft_strdup(root->line);
 	ft_strdel(&(root->line));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:39:43 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 15:01:07 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/12 14:53:33 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ char	*get_next_link(char *tmp, int *pos)
 
 int		li_atoi(char *line, int *ants)
 {
-	int		i;
-	int		check;
-	int		negative;
+	int			i;
+	int			check;
+	int			negative;
 
 	if (!line)
 		return (-1);
@@ -57,10 +57,11 @@ int		li_atoi(char *line, int *ants)
 	while (line[i] && line[i] >= '0' && line[i] <= '9')
 	{
 		check++;
+		if (check_int(*ants, line[i], negative))
+			return (-1);
 		*ants = (*ants * 10) + (line[i++] - '0');
 	}
-	if (negative)
-		*ants *= -1;
+	*ants = (negative) ? -1 : 1;
 	if (line[i] || check == 0)
 		return (-1);
 	return (0);

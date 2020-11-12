@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 21:55:38 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/09 19:59:35 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/12 14:53:55 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void				check_flags(t_lemon *root, int av, char **ac);
 void				read_map(t_lemon *root);
 int					get_ants(t_lemon *root);
 int					li_atoi(char *line, int *ants);
+int					check_int(int a, char c, int n);
 char				*get_next_word(char *tmp, int *pos);
 void				get_rooms(t_lemon *root);
 void				name_valid(t_lemon *root, t_rooms *room);
