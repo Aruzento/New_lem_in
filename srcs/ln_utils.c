@@ -6,7 +6,7 @@
 /*   By: erandal <erandal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:39:43 by erandal           #+#    #+#             */
-/*   Updated: 2020/11/12 14:53:33 by erandal          ###   ########.fr       */
+/*   Updated: 2020/11/15 07:31:44 by erandal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		li_atoi(char *line, int *ants)
 			return (-1);
 		*ants = (*ants * 10) + (line[i++] - '0');
 	}
-	*ants = (negative) ? -1 : 1;
+	*ants *= (negative) ? -1 : 1;
 	if (line[i] || check == 0)
 		return (-1);
 	return (0);
